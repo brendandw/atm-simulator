@@ -1,0 +1,13 @@
+{
+  "error": null,
+  "amount": 100,
+  "successful": true,
+  "cash": {
+    "cashList": [
+      {
+        "denomination": 10,
+        "amountOfNotes": 10
+      }
+    ]
+  }
+}

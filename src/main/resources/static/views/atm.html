@@ -1,0 +1,176 @@
+<div class ="container" >
+    <div class="row row-centered">
+        <div class="col-xs-12">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="text-center">Withdraw Cash</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="atm_keyboard" class="text-center" ng-keyup="keypressed($event)">
+                                <div class="col-xs-12">
+                                    <input type="text" id="inputScreen" digits-only class="input-block-level" focus="true" ng-model="vm.amountRequested">
+                                </div>
+                                <div class="col-xs-12">
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber('1')" pass-focus-to="inputScreen">1</button>
+                                        </div>
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber('2')" pass-focus-to="inputScreen">2</button>
+                                        </div>
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber('3')" pass-focus-to="inputScreen">3</button>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12">
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber(4)" pass-focus-to="inputScreen">4</button>
+                                        </div>
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber(5)" pass-focus-to="inputScreen">5</button>
+                                        </div>
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber(6)" pass-focus-to="inputScreen">6</button>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12">
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber(7)" pass-focus-to="inputScreen">7</button>
+                                        </div>
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber(8)" pass-focus-to="inputScreen">8</button>
+                                        </div>
+                                        <div class="col-xs-4 no-padding">
+                                            <button class="btn btn-primary btn-block" ng-click="appendNumber(9)" pass-focus-to="inputScreen">9</button>
+                                        </div>
+                                </div>
+                            <div class="col-xs-12">
+                                    <div class="col-xs-4 no-padding">
+                                        <button class="btn btn-primary btn-block" ng-click="backspace()" pass-focus-to="inputScreen">Backspace</button>
+                                    </div>
+                                    <div class="col-xs-4 no-padding">
+                                        <button class="btn btn-primary btn-block" ng-click="appendNumber(0)" pass-focus-to="inputScreen">0</button>
+                                    </div>
+                                    <div class="col-xs-4 no-padding">
+                                        <button class="btn btn-success btn-block" ng-click="withdrawCash(vm.amountRequested)">Withdraw</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="alert alert-info" ng-show="vm.busyWithdrawingCash">
+                            busy withdrawing cash <span><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="alert alert-success" ng-show="vm.withdrawCashSuccess">
+                            ${{vm.amountWithdrawn}} successfully withdrawn. The following denominations have been dispensed:
+                            <br>
+                            <ul>
+                                <li ng-repeat="combination in vm.combinationWithdrawn">
+                                    ${{combination.denomination}}x{{combination.amountOfNotes}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="alert alert-danger" ng-show="vm.withdrawCashOtherAmountAvailable">
+
+                            The amount requested is not available Do you want to withdraw <strong>${{vm.amountWithdrawn}}</strong>?
+                            <button class="btn btn-success" ng-click="withdrawOtherAmount(true)">
+                                Yes
+                            </button>
+                            <button class="btn btn-danger" ng-click="withdrawOtherAmount(false)">
+                                No
+                            </button>
+                        </div>
+                        <div class="alert alert-danger" ng-show="vm.withdrawCashError">
+                            A technical error occurred, please try again later.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                            <h3 class="text-center">Cash In ATM</h3>
+                        </div>
+                    <div class="panel-body">
+                        <div id="cash_reserve" class="col-xs-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-xs-6 text-center"><h4>Denomination</h4></th>
+                                        <th class="col-xs-6 text-center"><h4>Notes Available</h4</th>
+                                    </tr>
+                                </thead>
+                                <tr ng-repeat="combination in vm.atmModel | orderBy: 'denomination'">
+                                    <td class="text-center">{{combination.denomination}}</td>
+                                    <td class="text-center">{{combination.amountOfNotes}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="alert alert-info" ng-show="vm.busyPopulatingAtm">
+                            Busy refreshing ATM <span><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    <br>
+    <br>
+
+    <br>
+    <div class="col-xs-12">
+        <div class="col-md-3 col-sm-1 col-xs-0"></div>
+        <div class="col-md-6 col-sm-10 col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                        <h3 class="text-center">Add Cash To ATM</h3>
+                    </div>
+                <div class="panel-body">
+                    <div id="cash_reserve" class="col-xs-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2"></th>
+                                    <th class="col-xs-5 text-center"><h4>Denomination</h4></th>
+                                    <th class="col-xs-5 text-center"><h4>Amount</h4</th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="combination in vm.cashToAddList">
+                                <td><a class="btn btn-default btn-block" ng-click="removeCombinationFromListToAdd(combination)">-</a></td>
+                                <td class="text-center"><input  type="number" ng-model="combination.denomination"></td>
+                                <td class="text-center"><input  type="number" ng-model="combination.amountOfNotes"></td>
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-default btn-block" ng-click="addCombinationToListToAdd()">+</a></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                            </tr>
+                        </table>
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-8"><a class="btn btn-primary btn-block" ng-click="addCashToAtm(vm.cashToAddList)" ng-disabled="vm.cashToAddList.length<1">Add Cash</a></div>
+                        <div class="col-xs-2"></div>
+
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <br>
+                        <div class="alert alert-info" ng-show="vm.busyAddingCash">
+                            busy adding cash <span><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="alert alert-success" ng-show="vm.addCashSuccess">
+                            Cash Successfully Added to ATM
+                        </div>
+                        <div class="alert alert-danger" ng-show="vm.withdrawCashError">
+                            A technical error occurred, please try again later.
+                        </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-1 col-xs-0"></div>
+    </div>
+
+</div>
+    </div>

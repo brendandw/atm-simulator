@@ -1,0 +1,21 @@
+server:
+  port: 9081
+bruteforce:
+  cutoff: 15
+atm:
+  seedcash:
+    1:
+      value: 10
+      amount: 40
+    2:
+      value: 20
+      amount: 20
+    3:
+      value: 50
+      amount: 15
+    4:
+      value: 100
+      amount: 10
+    5:
+      value: 200
+      amount: 5

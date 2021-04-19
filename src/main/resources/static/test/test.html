@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="vendor/jasmine.min.css">
+		<script src="vendor/jasmine.min.js"></script>
+		<script type="text/javascript" src="vendor/jasmine-html.min.js"></script>
+		<script type="text/javascript" src="vendor/boot.min.js"></script>                
+                <script type="text/javascript" src="../vendor/angular.min.js"></script>
+                <script src="../vendor/angular-ui-router.min.js"></script>          
+                <script src="../vendor/sockjs-0.3.min.js"></script>
+                <script type="text/javascript" src="vendor/angular-mocks.js"></script> 
+                <script src="../scripts/app.module.js"></script>
+                <script src="../scripts/atm.module.js"></script>
+                <script src="../scripts/atm.service.js"></script>
+                <script src="../scripts/atm.model.js"></script>
+                <script src="../scripts/atm.controller.js"></script>
+                <script src="../scripts/atm.routes.js"></script>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+            
+            describe('atmControllerTest', function() {                
+                var scope,controller;
+                var atmService = {};
+                var atmModel = {};
+                
+                beforeEach(module('app.atm'));
+
+                beforeEach(function() {
+                    AtmServiceMock = {
+                        getWithdrawCash: function(){return},
+                        getCashInAtm: function(){return},
+                        postCash: function(){return},
+                        withdrawCashCombination: function(){return}
+                    };
+                });
+
+                beforeEach(inject(function ($controller,$rootScope) {
+                    scope = $rootScope.$new();
+                    controller=$controller('atmController', {
+                        '$scope': scope
+                      })
+                }));
+
+                it('Controller should not be null', function() {
+                    expect(controller).not.toBe(null);
+                });
+
+                describe('sum', function () {
+                    it('1 + 1 should equal 2', function () {
+                        var $scope = {};
+                        var controller = $controller('CalculatorController', { $scope: $scope });
+                        $scope.x = 1;
+                        $scope.y = 2;
+                        $scope.sum();
+                        expect($scope.z).toBe(3);
+                    });
+                });
+            });
+        
+
+	</script>
+</html>

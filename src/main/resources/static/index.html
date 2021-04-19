@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>ATM Controller</title>
+
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/font-awesome.min.css">
+
+
+    <script src="vendor/jquery-1.12.4.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/angular.min.js"></script>
+    <script src="vendor/angular-ui-router.min.js"></script>
+    <script src="vendor/sockjs-0.3.min.js"></script>
+    <script src="scripts/app.module.js"></script>
+    <script src="scripts/atm.module.js"></script>
+    <script src="scripts/atm.service.js"></script>
+    <script src="scripts/atm.model.js"></script>
+    <script src="scripts/atm.controller.js"></script>
+    <script src="scripts/atm.routes.js"></script>
+    <script src="scripts/digitsOnly.directive.js"></script>
+    <script src="scripts/focus.directive.js"></script>
+    <script src="scripts/passFocusTo.directive.js"></script>
+
+<style>
+    .no-padding {
+        padding:0;
+    }
+    .input-block-level {
+        display: block;
+        width: 100%;
+        min-height: 28px;        // Make inputs at least the height of their button counterpart
+    .box-sizing(border-box); // Makes inputs behave like true block-level elements
+    }
+</style>
+
+
+
+</head>
+<body>
+
+<div id="main" >
+    <div data-ui-view></div>
+</div>
+
+
+
+</body>
+</html>
