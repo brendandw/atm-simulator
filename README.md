@@ -43,8 +43,8 @@ The default port is currently set to 9081 (Eg. http://localhost:9081 )
 
 ## Algorithms
 The following algorithms are used to find the best combination of notes to service a withdrawal request:
-* Dynamic programming - Refer to the following documentation for a complete guide on the implementation of this algorithm
-  : 
+* Dynamic programming - Refer to the following documentation for a complete guide on the implementation of this algorithm: 
+  https://brendandw.medium.com/creating-an-atm-simulator-to-demonstrate-the-practical-application-of-dynamic-programming-f139f300a7eb
 * Exhaustive search (brute-force) - The Brute- Force algorithm will overwhelmingly be less performant than the 
   Dynamic Programming version. The Brute-Force version, however, has the advantage of more accurately prioritising 
   certain denominations, as it exhaustively finds every possible combination that satisfies the withdrawal request. 
@@ -81,7 +81,9 @@ The following algorithms are used to find the best combination of notes to servi
   instances of any changes to the remaining cash data model in the back-end API. This can be tested by executing a 
   withdrawal request via the Swagger interface (or a standard cUrl request, etc), and observing the impact on the 
   `Cash In ATM` section of the front-end
-* * Gives the user the ability to enter a withdrawal amount, and issue 
+* Gives the user the ability to enter a withdrawal amount, and immediately see the impact on the remaining cash in 
+  the ATM 
+* Gives the user the ability to restock the ATM with any chosen denominations.   
     
 
 
